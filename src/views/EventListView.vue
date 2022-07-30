@@ -86,10 +86,10 @@ export default {
       return this.page < totalPages
     },
     SizeUp() {
-      return EventService.setNumber(this.size, 1)
+      return this.size + 1
     },
     SizeDown() {
-      return EventService.setNumber(this.size, -1)
+      return this.size + -1
     }
   }
 }
