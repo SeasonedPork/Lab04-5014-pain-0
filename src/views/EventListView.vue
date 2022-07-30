@@ -21,6 +21,21 @@
         v-if="hasNextPage"
         >Next Page</router-link
       >
+      <router-link
+        id="page-size-minus"
+        :to="{ name: 'EventList', query: { size: size - 1 } }"
+        rel="next"
+        v-if="Size != 0"
+        >Decrese SIZE</router-link
+      >
+      <router-link
+        id="page-size-plus"
+        :to="{ name: 'EventList', query: { size: size + 1 } }"
+        rel="next"
+        v-if="Size != totalEvents"
+        >Increase SIZE</router-link
+      >
+      
     </div>
   </div>
 </template>
@@ -45,12 +60,13 @@ export default {
   data() {
     return {
       events: null,
-      totalEvents: 0 // add thiis for store totalevent
+      totalEvents: 0, // add thiis for store totalevent
+      size: 2
     }
   },
   created() {
     watchEffect(() => {
-      EventService.getEvents(2, this.page)
+      EventService.getEvents(this.size, this.page)
         .then((response) => {
           this.events = response.data
           this.totalEvents = response.headers['x-total-count']
