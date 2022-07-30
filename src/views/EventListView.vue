@@ -53,7 +53,8 @@ export default {
       EventService.getEvents(2, this.page)
         .then((response) => {
           this.events = response.data
-          this.totalEvents = Object.keys(response.data).length
+          this.totalEvents = response.headers['x-total-count']
+          //  Object.keys(response.data).length
           console.log(this.totalEvents)
         })
         .catch((error) => {
