@@ -16,5 +16,8 @@ export default {
   },
   getEvent(id) {
     return apiClient.get('/events' + id)
+  },
+  setNumber(thisnumber, thatnumber) {
+    return thisnumber + thatnumber
   }
 }

@@ -35,7 +35,6 @@
         v-if="Size != totalEvents"
         >Increase SIZE</router-link
       >
-      
     </div>
   </div>
 </template>
@@ -85,6 +84,12 @@ export default {
 
       //then check to see if the current page is less than a total pages
       return this.page < totalPages
+    },
+    SizeUp() {
+      return EventService.setNumber(this.size, 1)
+    },
+    SizeDown() {
+      return EventService.setNumber(this.size, -1)
     }
   }
 }
