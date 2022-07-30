@@ -36,7 +36,7 @@ export default {
   props: {
     page: {
       type: Number,
-      requirred: true
+      required: true
     }
   },
   components: {
