@@ -14,7 +14,7 @@ export default {
     return apiClient.get('/events')
   },
   //Added new call
-  getEvent(id) {
-    return apiClient.get('/event/' + id)
+  getEvent(perPage, page) {
+    return apiClient.get('/event?_limit' + perPage + '&_page=' + page)
   }
 }
