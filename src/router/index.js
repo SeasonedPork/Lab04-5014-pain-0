@@ -5,6 +5,7 @@ import EventDetails from '../views/event/EventDetailView.vue'
 import EventRegisterView from '@/views/event/EventRegisterView.vue'
 import EventEditView from '@/views/event/EventEditView'
 import EventLayoutView from '@/views/event/EventLayoutView.vue'
+import NotFoundView from '@/views/NotFoundView.vue'
 
 const routes = [
   {
@@ -42,7 +43,13 @@ const routes = [
         component: EventEditView
       }
     ]
-  } //add-on
+  },
+  //add-on
+  {
+    path: '/:catchAll(.*)',
+    name: 'NotFound',
+    component: NotFoundView
+  }
 ]
 
 const router = createRouter({
