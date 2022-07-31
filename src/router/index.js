@@ -4,6 +4,7 @@ import AboutView from '../views/AboutView.vue'
 import EventDetails from '../views/event/EventDetailView.vue'
 import EventRegisterView from '@/views/event/EventRegisterView.vue'
 import EventEditView from '@/views/event/EventEditView'
+import EventLayoutView from '@/views/event/EventLayoutView.vue'
 
 const routes = [
   {
@@ -19,22 +20,29 @@ const routes = [
   },
   {
     path: '/event/:id',
-    name: 'EventDetails',
-    component: EventDetails,
-    props: true
-  }, //add-on
-  {
-    path: '/event/:id/register',
-    name: 'EventRegister',
-    props: true,
-    component: EventRegisterView
-  },
-  {
-    path: '/event/:id/edit',
-    name: 'EventEdit',
-    props: true,
-    component: EventEditView
-  }
+    name: 'EventLayout',
+    component: EventLayoutView,
+    children: [
+      {
+        path: '',
+        name: 'EventDetails',
+        component: EventDetails,
+        props: true
+      },
+      {
+        path: 'register',
+        name: 'EventRegister',
+        props: true,
+        component: EventRegisterView
+      },
+      {
+        path: 'edit',
+        name: 'EventEdit',
+        props: true,
+        component: EventEditView
+      }
+    ]
+  } //add-on
 ]
 
 const router = createRouter({

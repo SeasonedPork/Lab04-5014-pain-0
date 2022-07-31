@@ -21,7 +21,7 @@
         v-if="hasNextPage"
         >Next Page</router-link
       >
-      <router-link
+      <!-- <router-link
         id="page-size-minus"
         :to="{ name: 'EventList', query: { size: size - 1 } }"
         rel="next"
@@ -34,7 +34,7 @@
         rel="next"
         v-if="Size != totalEvents"
         >Increase SIZE</router-link
-      >
+      > -->
     </div>
   </div>
 </template>
