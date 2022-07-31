@@ -18,21 +18,21 @@
         id="page-next"
         :to="{ name: 'EventList', query: { page: page + 1 } }"
         rel="next"
-        v-if="hasNextPage"
+        v-if="prevPage"
         >Next Page</router-link
       >
       <router-link
         id="page-size-minus"
         :to="{ name: 'EventList', query: { size: size - 1 } }"
         rel="next"
-        v-if="Size != 0"
+        v-if="addPage"
         >Decrese SIZE</router-link
       >
       <router-link
         id="page-size-plus"
         :to="{ name: 'EventList', query: { size: size + 1 } }"
         rel="next"
-        v-if="Size != totalEvents"
+        v-if="check"
         >Increase SIZE</router-link
       >
       
@@ -52,6 +52,10 @@ export default {
     page: {
       type: Number,
       required: true
+    },
+    perPage: {
+      type: Number,
+      required: true
     }
   },
   components: {
@@ -64,14 +68,12 @@ export default {
       size: 2
     }
   },
-  created() {
+   created() {
     watchEffect(() => {
-      EventService.getEvents(this.size, this.page)
+      EventService.getEvents(this.perPage, this.page)
         .then((response) => {
           this.events = response.data
           this.totalEvents = response.headers['x-total-count']
-          //  Object.keys(response.data).length
-          console.log(this.totalEvents)
         })
         .catch((error) => {
           console.log(error)
@@ -85,6 +87,21 @@ export default {
 
       //then check to see if the current page is less than a total pages
       return this.page < totalPages
+    },
+    prevPage() {
+      // First, calcalate total pages
+
+      // Then check to see if the current page is less than the total pages.
+      return this.page >= 2
+    },
+    addPage() {
+      return this.perPage < this.totalEvents
+    },
+     Check() {
+      // First, calcalate total pages
+
+      // Then check to see if the current page is less than the total pages.
+      return this.perPage >= 2
     }
   }
 }
